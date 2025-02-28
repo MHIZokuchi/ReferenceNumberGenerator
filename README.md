@@ -83,14 +83,6 @@ If you encounter any issues or have questions, please:
 2. Create a new issue if your problem hasn't been reported
 3. Provide as much detail as possible when reporting issues
 
-## Roadmap
-
-- Add more reference number formats
-- Add customizable character sets
-- Add async generation methods for bulk operations
-- Add reference number validation
-- Add reference number parsing
-
 ## Contributors
 
 - [Okwuchi Uzoigwe] - Initial work
