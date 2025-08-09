@@ -9,10 +9,10 @@ namespace ReferenceGenerator
     /// </summary>
     public class ReferenceGenerator
     {
-        private static readonly Random _random = new Random();
-        private static readonly string _numbers = "0123456789";
-        private static readonly string _letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        private static readonly string _alphanumeric = _numbers + _letters;
+        private static readonly Random Random = new Random();
+        private static readonly string Numbers = "0123456789";
+        private static readonly string Letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private static readonly string Alphanumeric = Numbers + Letters;
 
         /// <summary>
         /// Generates a numeric reference number of specified length.
@@ -26,10 +26,10 @@ namespace ReferenceGenerator
             if (length <= 0)
                 throw new ArgumentException("Length must be greater than 0", nameof(length));
 
-            StringBuilder result = new StringBuilder(prefix);
-            for (int i = 0; i < length; i++)
+            var result = new StringBuilder(prefix);
+            for (var i = 0; i < length; i++)
             {
-                result.Append(_numbers[_random.Next(_numbers.Length)]);
+                result.Append(Numbers[Random.Next(Numbers.Length)]);
             }
             return result.ToString();
         }
@@ -46,10 +46,10 @@ namespace ReferenceGenerator
             if (length <= 0)
                 throw new ArgumentException("Length must be greater than 0", nameof(length));
 
-            StringBuilder result = new StringBuilder(prefix);
-            for (int i = 0; i < length; i++)
+            var result = new StringBuilder(prefix);
+            for (var i = 0; i < length; i++)
             {
-                result.Append(_letters[_random.Next(_letters.Length)]);
+                result.Append(Letters[Random.Next(Letters.Length)]);
             }
             return result.ToString();
         }
@@ -66,10 +66,10 @@ namespace ReferenceGenerator
             if (length <= 0)
                 throw new ArgumentException("Length must be greater than 0", nameof(length));
 
-            StringBuilder result = new StringBuilder(prefix);
-            for (int i = 0; i < length; i++)
+            var result = new StringBuilder(prefix);
+            for (var i = 0; i < length; i++)
             {
-                result.Append(_alphanumeric[_random.Next(_alphanumeric.Length)]);
+                result.Append(Alphanumeric[Random.Next(Alphanumeric.Length)]);
             }
             return result.ToString();
         }
@@ -95,15 +95,15 @@ namespace ReferenceGenerator
             if (length <= 0)
                 throw new ArgumentException("Length must be greater than 0", nameof(length));
 
-            StringBuilder result = new StringBuilder(prefix);
+            var result = new StringBuilder(prefix);
             using (var rng = RandomNumberGenerator.Create())
             {
-                byte[] randomBytes = new byte[length];
+                var randomBytes = new byte[length];
                 rng.GetBytes(randomBytes);
 
                 for (int i = 0; i < length; i++)
                 {
-                    result.Append(_alphanumeric[randomBytes[i] % _alphanumeric.Length]);
+                    result.Append(Alphanumeric[randomBytes[i] % Alphanumeric.Length]);
                 }
             }
             return result.ToString();
