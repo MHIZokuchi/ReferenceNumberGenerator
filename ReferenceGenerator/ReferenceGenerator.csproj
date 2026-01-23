@@ -1,9 +1,40 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
+    <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    
+    <!-- Package metadata -->
+    <PackageId>ReferenceGenerator</PackageId>
+    <Version>2.0.0</Version>
+    <Authors>Okwuchi Uzoigwe</Authors>
+    <Company>Okwuchi Uzoigwe</Company>
+    <Description>A lightweight, flexible C# library for generating unique reference numbers in various formats. Features include numeric, alphabetic, alphanumeric, and GUID generation, plus check digit support (Luhn, Mod97, Verhoeff, Damm) and powerful template-based generation.</Description>
+    <PackageTags>reference-generator;reference-number;unique-id;check-digit;luhn;iban;transaction-id;order-number;dotnet;csharp</PackageTags>
+    <PackageProjectUrl>https://github.com/MHIZokuchi/ReferenceNumberGenerator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MHIZokuchi/ReferenceNumberGenerator</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+    
+    <!-- Build settings -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <!-- Polyfills for netstandard2.0 -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Memory" Version="4.5.5" />
+    <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="" />
+    <None Include="../icon.png" Pack="true" PackagePath="" Condition="Exists('../icon.png')" />
+  </ItemGroup>
 
 </Project>
