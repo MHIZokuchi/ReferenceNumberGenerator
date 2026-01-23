@@ -1,10 +1,8 @@
 name: Publish to NuGet
-
 on:
   push:
     branches:
     - master
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,7 +22,10 @@ jobs:
       run: dotnet build --configuration Release --no-restore
       
     - name: Pack
-      run: dotnet pack --configuration Release --no-build --output nupkgs
+      run: |
+        dotnet clean --configuration Release
+        dotnet build --configuration Release
+        dotnet pack --configuration Release --no-build --output nupkgs
       
     - name: Push to NuGet
       run: dotnet nuget push "./nupkgs/*.nupkg" --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
